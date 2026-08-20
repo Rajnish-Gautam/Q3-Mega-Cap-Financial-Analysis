@@ -1,14 +1,10 @@
 # Q3 Mega-Cap Financial Analysis
 
-## Overview
+Python-based comparative financial analysis of six mega-cap companies using SEC filings, Q3 YOY growth, financial strength, earnings trajectory, and multi-factor ranking.
 
-A Python-based financial analysis framework comparing six major U.S. companies using quarterly SEC filing data.
+## 📊 Project Overview
 
-The project combines **financial strength, YOY momentum, earnings trajectory, and sensitivity analysis** to create a multi-factor ranking of the companies.
-
-The analysis focuses on **Q3 FY2025 actual results compared with Q3 FY2024 results** for each company.
-
-### Companies Analyzed
+This project evaluates the financial performance and earnings momentum of six major U.S. mega-cap companies:
 
 * Alphabet Inc.
 * NVIDIA Corp.
@@ -17,152 +13,69 @@ The analysis focuses on **Q3 FY2025 actual results compared with Q3 FY2024 resul
 * Apple Inc.
 * Meta Platforms, Inc.
 
----
+The analysis compares **Q3 FY2025 against Q3 FY2024** on a year-over-year basis and combines multiple financial dimensions into a final composite ranking.
 
-## Key Results
+## 🎯 Objectives
 
-| Rank | Company   | Financial Strength | YOY Momentum | Earnings Trajectory | Final Score | Classification   |
-| ---: | --------- | -----------------: | -----------: | ------------------: | ----------: | ---------------- |
-|    1 | Alphabet  |              0.817 |        0.720 |               0.767 |   **0.778** | Leader           |
-|    2 | NVIDIA    |              0.600 |        0.860 |               0.883 |   **0.735** | Leader           |
-|    3 | Microsoft |              0.733 |        0.400 |               0.500 |   **0.587** | Quality / Mature |
-|    4 | Walmart   |              0.467 |        0.580 |               0.650 |   **0.537** | Growth           |
-|    5 | Apple     |              0.600 |        0.200 |               0.333 |   **0.427** | Quality / Mature |
-|    6 | Meta      |              0.283 |        0.240 |               0.367 |   **0.287** | Weak             |
+The project aims to answer:
 
----
+1. Which company demonstrated the strongest Q3 financial performance?
+2. Which companies showed the strongest YOY momentum?
+3. Which companies have accelerating or deteriorating earnings trajectories?
+4. How does financial strength compare with earnings momentum?
+5. Does the final ranking remain stable when factor weights change?
 
-## Methodology
+## 📅 Comparison Period
 
-The analysis follows a multi-stage financial ranking framework:
+All companies are evaluated using their respective **Q3 FY2025 results versus Q3 FY2024 results**.
 
-```text
-SEC Financial Data
-        ↓
-Q3 FY2025 / Q3 FY2024 Fiscal Quarter Alignment
-        ↓
-Revenue / Net Income / Margin
-        ↓
-Financial Strength Score
-        ↓
-YOY Revenue / Net Income / Margin Change
-        ↓
-YOY Momentum Score
-        ↓
-Earnings Trajectory
-        ↓
-Composite Score
-        ↓
-Weight Sensitivity Analysis
-        ↓
-Final Ranking
-```
+Because fiscal calendars differ between companies, the analysis uses the company's reported fiscal-quarter periods rather than assuming identical calendar dates.
 
-## 1. Fiscal Quarter Alignment
+The YOY comparison is therefore:
 
-The analysis compares **Q3 FY2025 with Q3 FY2024** for each company.
+**Q3 FY2025 → Q3 FY2024**
 
-Because companies use different fiscal calendars, the exact dates of Q3 differ across companies. Therefore, the analysis identifies each company's fiscal reporting period rather than assuming that Q3 corresponds to the same calendar dates.
+rather than comparing Q3 FY2025 with Q2 or Q3 FY2026.
 
-### NVIDIA Example
+## 📈 Key Metrics
 
-**Current period — Q3 FY2025**
+### 1. Revenue YOY Growth
 
-July 29, 2024 → October 27, 2024
+Measures the percentage change in quarterly revenue compared with the same fiscal quarter in the prior year.
 
-Revenue:
+### 2. Net Income YOY Growth
 
-**$35.082B**
+Measures the percentage change in quarterly net income compared with the corresponding prior-year quarter.
 
-**Prior comparable period — Q3 FY2024**
+### 3. Net Profit Margin Change
 
-July 31, 2023 → October 29, 2023
+Measures the change in net profit margin in percentage points between the current and prior-year quarter.
 
-Revenue:
+### 4. Financial Strength
 
-**$18.120B**
+A normalized composite score representing the company's underlying financial performance.
 
-Therefore, NVIDIA's YOY comparison is:
+### 5. YOY Momentum
 
-**Q3 FY2025 vs Q3 FY2024**
+A normalized score based on relative revenue growth, net income growth, and margin expansion.
 
-The same principle is applied to all companies in the peer group.
+### 6. Earnings Trajectory
 
----
-
-## 2. Financial Strength
-
-Financial Strength evaluates absolute quarterly performance using:
-
-* Revenue
-* Net Income
-* Net Profit Margin
-
-Each metric is ranked across the six-company peer group and converted into a normalized score.
-
-The three scores are combined to produce the **Financial Strength Score**.
-
----
-
-## 3. YOY Momentum
-
-YOY Momentum evaluates the rate of change between **Q3 FY2025 and Q3 FY2024**.
-
-### Revenue YOY Growth
-
-```text
-(Current Q3 FY2025 Revenue - Q3 FY2024 Revenue)
------------------------------------------------- × 100
-             Q3 FY2024 Revenue
-```
-
-### Net Income YOY Growth
-
-```text
-(Current Q3 FY2025 Net Income - Q3 FY2024 Net Income)
------------------------------------------------------- × 100
-                 Q3 FY2024 Net Income
-```
-
-### Margin Change
-
-```text
-Q3 FY2025 Net Margin - Q3 FY2024 Net Margin
-```
-
-Margin change is measured in **percentage points (pp)**.
-
----
-
-## 4. Earnings Trajectory
-
-Earnings Trajectory evaluates the direction and quality of earnings performance between **Q3 FY2024 and Q3 FY2025**.
-
-It considers:
+The earnings trajectory evaluates whether the company's earnings performance is moving in a favorable or unfavorable direction based on:
 
 * Revenue growth
 * Net income growth
-* Margin movement
+* Margin expansion or contraction
 
-The framework classifies companies as:
+Companies are classified into categories such as:
 
-### Accelerating
+* **Accelerating**
+* **Profitable Growth**
+* **Deteriorating**
 
-Positive earnings momentum supported by improving revenue, earnings and/or margins.
+## 🧮 Final Composite Ranking
 
-### Profitable Growth
-
-Revenue and earnings are growing, but the trajectory is less aggressive than the strongest performers.
-
-### Deteriorating
-
-Earnings performance is weakening, particularly when declining net income and margin contraction offset revenue growth.
-
----
-
-## 5. Final Composite Score
-
-The final model combines three factors:
+The final score combines three dimensions:
 
 | Factor              | Weight |
 | ------------------- | -----: |
@@ -170,57 +83,65 @@ The final model combines three factors:
 | YOY Momentum        |    30% |
 | Earnings Trajectory |    20% |
 
-```text
-Final Score =
-    0.50 × Financial Strength
-  + 0.30 × YOY Momentum
-  + 0.20 × Earnings Trajectory
-```
+The final composite score is therefore:
 
----
+**Final Score = 50% Financial Strength + 30% YOY Momentum + 20% Earnings Trajectory**
 
-## Key Findings
+## 🏆 Final Q3 Ranking
+
+| Rank | Company              | Financial Strength | YOY Momentum | Earnings Trajectory | Final Score | Trajectory        |
+| ---: | -------------------- | -----------------: | -----------: | ------------------: | ----------: | ----------------- |
+|    1 | Alphabet Inc.        |              0.817 |        0.720 |               0.767 |   **0.778** | Accelerating      |
+|    2 | NVIDIA Corp.         |              0.600 |        0.860 |               0.883 |   **0.735** | Accelerating      |
+|    3 | Microsoft Corp.      |              0.733 |        0.400 |               0.500 |   **0.587** | Accelerating      |
+|    4 | Walmart Inc.         |              0.467 |        0.580 |               0.650 |   **0.537** | Accelerating      |
+|    5 | Apple Inc.           |              0.600 |        0.200 |               0.333 |   **0.427** | Profitable Growth |
+|    6 | Meta Platforms, Inc. |              0.283 |        0.240 |               0.367 |   **0.287** | Deteriorating     |
+
+## 📊 Dashboard
+
+The project includes a four-panel financial dashboard covering:
+
+* Final Q3 composite ranking
+* Revenue and net income YOY growth
+* Net profit margin change
+* Financial strength versus YOY momentum
+
+![Q3 Financial Analysis Dashboard](Q3_Financial_Analysis_Dashboard.png)
+
+## 🔍 Key Findings
 
 ### Alphabet — Overall Leader
 
-Alphabet achieved the highest final score of **0.778**.
-
-Its primary advantage is its strong Financial Strength Score of **0.817**, combined with positive YOY growth and an accelerating earnings trajectory.
+Alphabet ranks first on the final composite score, combining the strongest financial strength among the companies analyzed with strong YOY momentum and an accelerating earnings trajectory.
 
 ### NVIDIA — Strongest Momentum
 
-NVIDIA recorded the strongest growth profile between **Q3 FY2024 and Q3 FY2025**:
+NVIDIA records the strongest YOY momentum and earnings trajectory in the group, driven by exceptionally high revenue and net income growth.
 
-* Revenue YOY: **+93.61%**
-* Net Income YOY: **+108.90%**
-* Margin Change: **+4.03 pp**
-* Earnings Trajectory Score: **0.883**
+Its lower financial-strength score relative to Alphabet prevents it from ranking first in the final composite model.
 
-NVIDIA therefore represents the strongest momentum-driven company in the peer group.
+### Microsoft — Strong Financial Foundation
 
-### Microsoft — Quality / Mature
+Microsoft demonstrates strong financial strength but comparatively moderate YOY momentum, resulting in a third-place overall ranking.
 
-Microsoft combines strong absolute financial strength with more moderate recent YOY momentum.
+### Walmart — Consistent Growth
 
-### Walmart — Improving Growth
+Walmart shows relatively modest revenue growth but strong net income growth and positive margin expansion, resulting in an accelerating earnings trajectory.
 
-Walmart's absolute financial strength is more moderate, but its YOY momentum and earnings trajectory indicate improving performance.
+### Apple — Profitable but Slower Momentum
 
-### Apple — Strong Quality, Weak Momentum
+Apple maintains solid financial strength but has weaker YOY momentum and limited margin expansion compared with the leaders.
 
-Apple maintains relatively strong absolute financial characteristics but has comparatively weaker recent YOY momentum.
+### Meta — Weakest Overall Trajectory
 
-### Meta — Deteriorating Earnings Quality
+Meta shows strong revenue growth but a substantial decline in net income and a significant contraction in net profit margin, resulting in a deteriorating earnings trajectory.
 
-Meta's revenue increased **26.25%**, while net income declined **82.73%** and margin contracted by **33.36 pp** between Q3 FY2024 and Q3 FY2025.
+## 🔬 Sensitivity Analysis
 
-This demonstrates why revenue growth alone is insufficient when evaluating earnings quality.
+The analysis tests whether the final ranking is dependent on the selected weighting scheme.
 
----
-
-## Sensitivity Analysis
-
-The model was tested under different Financial Strength / YOY Momentum weighting assumptions:
+The financial-strength/momentum weighting was varied across:
 
 * 70% / 30%
 * 60% / 40%
@@ -228,68 +149,83 @@ The model was tested under different Financial Strength / YOY Momentum weighting
 * 40% / 60%
 * 30% / 70%
 
-Alphabet and NVIDIA remained the two strongest companies across the tested weighting scenarios, while NVIDIA became increasingly competitive as greater weight was assigned to momentum.
+The ranking remains relatively stable across the tested weighting scenarios.
 
-The final ranking also remained unchanged after adding the Earnings Trajectory factor.
+Alphabet and NVIDIA consistently occupy the top two positions, while Apple and Meta remain near the bottom.
 
----
+This suggests that the core ranking is not driven solely by one specific weighting assumption.
 
-## Technology
+## 🧠 Methodology & Classification Rules
+
+The methodology follows these principles:
+
+1. Use reported quarterly financial data from SEC filings.
+2. Compare each company's Q3 FY2025 results with its corresponding Q3 FY2024 results.
+3. Respect company-specific fiscal calendars.
+4. Identify the appropriate revenue and net income XBRL tags for each company.
+5. Calculate YOY growth rates.
+6. Calculate net profit margin for both periods.
+7. Calculate the change in net profit margin in percentage points.
+8. Normalize financial metrics to create comparable scores across companies.
+9. Combine the factor scores using the defined weighting methodology.
+10. Perform sensitivity analysis to test ranking stability.
+
+## 🛠️ Technology & Data
+
+**Languages & Libraries**
 
 * Python
 * Pandas
 * NumPy
 * Matplotlib
-* Jupyter Notebook
-* SEC filing data
-* Data normalization
-* Multi-factor scoring
+
+**Data Source**
+
+* U.S. SEC filings / XBRL financial data
+
+**Analysis Techniques**
+
+* Financial statement analysis
+* YOY growth analysis
+* Financial normalization
+* Composite scoring
+* Ranking methodology
 * Sensitivity analysis
+* Data visualization
 
----
-
-## Project Structure
+## 📁 Repository Structure
 
 ```text
 Q3-Mega-Cap-Financial-Analysis/
 │
 ├── Q3_Financial_Analysis.ipynb
+├── Q3_Financial_Analysis_Dashboard.png
 ├── README.md
-├── data/
-├── outputs/
 └── requirements.txt
 ```
 
----
+## 🚀 How to Run
 
-## Limitations
+Clone the repository and install the required Python packages:
 
-This is a financial-performance ranking framework and not an investment recommendation.
+```bash
+pip install -r requirements.txt
+```
 
-Current limitations include:
+Then open:
 
-* Six-company peer group
-* Q3 FY2025 as the current analysis period
-* Q3 FY2024 as the YOY comparison period
-* Relative scoring
-* No valuation analysis
-* No stock-price performance
-* No DCF
-* No balance-sheet risk scoring
-* No free-cash-flow factor in the current model
+```text
+Q3_Financial_Analysis.ipynb
+```
 
----
+and run the notebook cells sequentially.
 
-## Disclaimer
+## 📌 Disclaimer
 
-This project is intended for educational and analytical purposes only.
+This project is intended for educational, analytical, and portfolio purposes. It does not constitute investment advice or a recommendation to buy or sell securities.
 
-The rankings represent the output of a predefined quantitative framework and should not be interpreted as investment advice or a recommendation to buy or sell securities.
-
----
-
-## Author
+## 👤 Author
 
 **Rajnish Gautam**
 
-Financial analysis and data analytics portfolio project combining equity research concepts with Python-based quantitative analysis.
+Data Analyst | Financial Analysis | Equity Research | Python & Data Analytics | MBA Finance 
